@@ -91,7 +91,11 @@
   };
 
   Celery.prototype.createOrder = function(order, callback) {
-    return this._post('orders', 'checkout', order, callback);
+    if (order.payment_source == null) {
+      return this._post('orders', 'checkout/paypal', order, callback);
+    } else {
+      return this._post('orders', 'checkout', order, callback);
+    }
   };
 
   Celery.prototype._setUserId = function(id) {
