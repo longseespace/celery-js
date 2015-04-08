@@ -91,7 +91,7 @@
   };
 
   Celery.prototype.createOrder = function(order, callback) {
-    if (order.payment_source == null) {
+    if (order.payment_method == 'paypal') {
       return this._post('orders', 'checkout/paypal', order, callback);
     } else {
       return this._post('orders', 'checkout', order, callback);
